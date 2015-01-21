@@ -92,58 +92,102 @@ $(document).ready(moveButtonAuto('.jumping-bean'));
 
 // Working version for a single button
 
-var button_container = {}
+// var button_container = {}
 
-function update_button_container(element_id) {
-  button_container[element_id] +=1
-}
-
-
-var after_clicks = function(elementid, counter) {
-  if (counter === undefined) {
-    var counter = 0 
-  } else {
-    var counter = counter
-  }
-
-  if (counter === 3) {
-    return $('button').remove(elementid); //deletes after three clicks
-  } else {
-    counter += 1;
-    update_button_container(elementid); //updating object
-    console.log(counter);
-    $(elementid).css('font-size', 'smaller'); //make font smaller
-    //make speed faster
-  };
-  // after_clicks(elementid, counter)   
-}
-
-var call_functions = function(element_id) {
-  if (button_container.hasOwnProperty(element_id)) {
-    var the_counter = button_container[element_id];
-    // console.log(the_counter)
-    // console.log(button_container)
-    after_clicks(element_id, the_counter);
-  } else {
-    button_container[element_id] = 0
-    return after_clicks(element_id, 0)
-  }
-};
-
-var return_call_functions_button1 = function() {
-  return call_functions('#button-1')
-}
-
-// var return_call_functions_button2 = function() {
-//   return call_functions('#button-2')
+// function update_button_container(element_id) {
+//   button_container[element_id] +=1
 // }
 
 
-$('button').on('click', return_call_functions_button1);
-// $('button').on('click', return_call_functions_button2);
+// var after_clicks = function(elementid, counter) {
+//   if (counter === undefined) {
+//     var counter = 0 
+//   } else {
+//     var counter = counter
+//   }
+
+//   if (counter === 3) {
+//     return $('button').remove(elementid); //deletes after three clicks
+//   } else {
+//     counter += 1;
+//     update_button_container(elementid); //updating object
+//     console.log(counter);
+//     $(elementid).css('font-size', 'smaller'); //make font smaller
+//     //make speed faster
+//   };
+//   // after_clicks(elementid, counter)   
+// }
+
+// var call_functions = function(element_id) {
+//   if (button_container.hasOwnProperty(element_id)) {
+//     var the_counter = button_container[element_id];
+//     // console.log(the_counter)
+//     // console.log(button_container)
+//     after_clicks(element_id, the_counter);
+//   } else {
+//     button_container[element_id] = 0
+//     return after_clicks(element_id, 0)
+//   }
+// };
+
+// var return_call_functions_button1 = function() {
+//   return call_functions('#button-1')
+// }
+
+// // var return_call_functions_button2 = function() {
+// //   return call_functions('#button-2')
+// // }
+
+
+// $('button').on('click', return_call_functions_button1);
+// // $('button').on('click', return_call_functions_button2);
+
+// // $('button').on('click', second_button);
+
+
+//Now for more buttons! 
+
+
+
+function _clicks_constructor(element_id) {
+  this.id = element_id,
+  this.counter = 0,
+  this.return_call_functions = function() {
+    return this.after_clicks();
+  }
+};
+
+
+_clicks_constructor.prototype.after_clicks= function() {
+
+  if (this.counter === 3) {
+    return $('button').remove(this.id); //deletes after three clicks
+  } else {
+    this.counter += 1;
+    console.log(this.counter);
+    $(this.id).css('font-size', 'smaller'); //make font smaller
+    //make speed faster
+  };
+}
+
+
+
+var button1 = new _clicks_constructor('#button-1');
+var button1click = function() {
+  button1.return_call_functions()
+}
+
+var button2 = new _clicks_constructor('#button-2');
+var button2click = function() {
+  button2.return_call_functions()
+}
+
+
+
+$('button').on('click', button1click)
+$('button').on('click', button2click);
 
 // $('button').on('click', second_button);
-
 
 
 

@@ -36,19 +36,39 @@ $('.jumping-bean').css('background-color', 'lightblue');
 //   console.log(a + b)
 // };
 
+// non-hardcoded working version: 
 
-var moveButtonAuto = function(selector) {
+// var moveButtonAuto = function(selector) {
+//   $(selector).css('margin-left', randomPx);
+//   $(selector).css('margin-top', randomPx);
+
+//   var moveit = function () {
+//     return moveButtonAuto(selector)
+//   }
+  
+//   return setTimeout(moveit, 2000);
+// };
+
+// $(document).ready(moveButtonAuto('.jumping-bean'));
+
+
+
+
+//updated to add speeding up after click
+
+var moveButtonAuto = function(selector, set_time_method_time) {
   $(selector).css('margin-left', randomPx);
   $(selector).css('margin-top', randomPx);
 
   var moveit = function () {
-    return moveButtonAuto(selector)
+    return moveButtonAuto(selector, set_time_method_time)
   }
-  setTimeout(moveit, 2000);
+  
+  setTimeout(moveit, set_time_method_time);
 };
 
-$(document).ready(moveButtonAuto('.jumping-bean'));
-
+$(document).ready(moveButtonAuto('#button-1', 2000));
+$(document).ready(moveButtonAuto('#button-2', 2000));
 
 
 //Hardcoded working version:
@@ -145,49 +165,102 @@ $(document).ready(moveButtonAuto('.jumping-bean'));
 // // $('button').on('click', second_button);
 
 
-//Now for more buttons! 
 
+//Working version with the speed up after click added: 
+
+
+// function _clicks_constructor(element_id) {
+//   this.id = element_id,
+//   this.counter = 0,
+//   this.speed = 2000,
+//   this.return_call_functions = function() {
+//     return this.after_clicks();
+//   }
+//   this.speedup = function() {
+//     this.speed = this.speed-200;
+//     return moveButtonAuto(this.id, this.speed);
+//   }
+// };
+
+
+// _clicks_constructor.prototype.after_clicks= function() {
+
+//   if (this.counter == 3) {
+//     return $('button').remove(this.id); //deletes after three clicks
+//   } else {
+//     this.counter += 1;
+//     // console.log(this.counter);
+//     $(this.id).css('font-size', 'smaller'); //make font smaller
+//     this.speedup(); // adjust setTimeout - make speed faster
+//     // console.log(this.speed)  
+//   };
+// };
+
+
+
+// var button1 = new _clicks_constructor('#button-1');
+// var button1click = function() {
+//   button1.return_call_functions();
+// }
+
+// var button2 = new _clicks_constructor('#button-2');
+// var button2click = function() {
+//   button2.return_call_functions();
+// }
+
+
+// $('button').on('click', button1click);
+
+// $('button').on('click', button2click);
+
+
+
+
+//Now to separate the objects...
 
 
 function _clicks_constructor(element_id) {
   this.id = element_id,
   this.counter = 0,
+  this.speed = 2000,
   this.return_call_functions = function() {
     return this.after_clicks();
+  }
+  this.speedup = function() {
+    this.speed = this.speed-200;
+    return moveButtonAuto(this.id, this.speed);
   }
 };
 
 
 _clicks_constructor.prototype.after_clicks= function() {
 
-  if (this.counter === 3) {
+  if (this.counter == 3) {
     return $('button').remove(this.id); //deletes after three clicks
   } else {
     this.counter += 1;
-    console.log(this.counter);
+    // console.log(this.counter);
     $(this.id).css('font-size', 'smaller'); //make font smaller
-    //make speed faster
+    this.speedup(); // adjust setTimeout - make speed faster
+    // console.log(this.speed)  
   };
-}
-
+};
 
 
 var button1 = new _clicks_constructor('#button-1');
 var button1click = function() {
-  button1.return_call_functions()
+  button1.return_call_functions();
 }
 
 var button2 = new _clicks_constructor('#button-2');
 var button2click = function() {
-  button2.return_call_functions()
+  button2.return_call_functions();
 }
 
 
-
-$('button').on('click', button1click)
+$('button').on('click', button1click);
 $('button').on('click', button2click);
 
-// $('button').on('click', second_button);
 
 
 

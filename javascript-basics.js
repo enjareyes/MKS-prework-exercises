@@ -63,8 +63,8 @@ $('.jumping-bean').css('background-color', 'lightblue');
 //updated to add speeding up after click
 
 var moveButtonAuto = function(selector, set_time_method_time) {
-  $(selector).css('margin-left', randomPx);
-  $(selector).css('margin-top', randomPx);
+  $(selector).css('margin-left', randomPx());
+  $(selector).css('margin-top', randomPx());
 
   var moveit = function () {
     return moveButtonAuto(selector, set_time_method_time)
@@ -75,6 +75,7 @@ var moveButtonAuto = function(selector, set_time_method_time) {
 
 $(document).ready(moveButtonAuto('#button-1', 2000));
 $(document).ready(moveButtonAuto('#button-2', 2000));
+$(document).ready(moveButtonAuto('#button-3', 2000));
 
 
 
@@ -233,13 +234,12 @@ function _clicks_constructor(element_id) {
   this.speed = 2000,
   this.return_call_functions = function() {
     return this.after_clicks();
-  }
+  },
   this.speedup = function() {
     this.speed = this.speed-200;
     return moveButtonAuto(this.id, this.speed);
   }
 };
-
 
 _clicks_constructor.prototype.after_clicks= function() {
   if (this.counter == 2) {
@@ -273,16 +273,16 @@ var button3click = function() {
 
 
 //adding the timer
-var timer_for_buttons_game = function() {
+// var timer_for_buttons_game = function() {
 
-  var call_time = Math.floor(Date.now() / 1000
+//   var call_time = Math.floor(Date.now() / 1000
 
-    $(document).ready(function() {
-      var start_time = call_time); //starts counting time in seconds once the document is loaded
-    })
+//     $(document).ready(function() {
+//       var start_time = call_time); //starts counting time in seconds once the document is loaded
+//     })
 
 // console.log('Your time for 3 buttons: ' + (end_time - start_time));
-}
+// }
 
 
 

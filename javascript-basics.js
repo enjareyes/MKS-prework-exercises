@@ -52,6 +52,12 @@ $('.jumping-bean').css('background-color', 'lightblue');
 // $(document).ready(moveButtonAuto('.jumping-bean'));
 
 
+// Change your html to start with 10 buttons. Make them all jump around 
+// randomly in different directions, starting on page load.
+// Every time a button is clicked, make the font size becomes smaller, and 
+// make it move faster and/or farther. When it gets clicked three times, remove it from the page.
+// Add a timer for how long a user takes to defeat all 10 buttons on the page.
+
 
 
 //updated to add speeding up after click
@@ -69,6 +75,8 @@ var moveButtonAuto = function(selector, set_time_method_time) {
 
 $(document).ready(moveButtonAuto('#button-1', 2000));
 $(document).ready(moveButtonAuto('#button-2', 2000));
+
+
 
 
 //Hardcoded working version:
@@ -166,7 +174,7 @@ $(document).ready(moveButtonAuto('#button-2', 2000));
 
 
 
-//Working version with the speed up after click added: 
+// Speed up after click added: 
 
 
 // function _clicks_constructor(element_id) {
@@ -234,8 +242,8 @@ function _clicks_constructor(element_id) {
 
 
 _clicks_constructor.prototype.after_clicks= function() {
-
-  if (this.counter == 3) {
+  if (this.counter == 2) {
+    this.buttons_left -= 1
     return $('button').remove(this.id); //deletes after three clicks
   } else {
     this.counter += 1;
@@ -257,9 +265,34 @@ var button2click = function() {
   button2.return_call_functions();
 }
 
+var button3 = new _clicks_constructor('#button-3');
+var button3click = function() {
+  button3.return_call_functions();
+}
 
-$('button').on('click', button1click);
-$('button').on('click', button2click);
+
+
+//adding the timer
+var timer_for_buttons_game = function() {
+
+  var call_time = Math.floor(Date.now() / 1000
+
+    $(document).ready(function() {
+      var start_time = call_time); //starts counting time in seconds once the document is loaded
+    })
+
+// console.log('Your time for 3 buttons: ' + (end_time - start_time));
+}
+
+
+
+
+
+$('#button-1').on('click', button1click);
+
+$('#button-2').on('click', button2click);
+
+$('#button-3').on('click', button3click);
 
 
 

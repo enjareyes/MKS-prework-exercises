@@ -65,6 +65,12 @@ function buttonController(elementId) {
 }
 
 
+//Initial code calling outline
+// var button1Controller = new buttonController('#button-1');
+// button1Controller.infiniteJump();
+// button1Controller.speedupSmallerfont();
+
+
 var start_buttons = function(id, button_var_name) {
   var button_var_name = new buttonController(id);
   button_var_name.infiniteJump();
@@ -77,44 +83,5 @@ for(var x = 0; x<=10; x++) {
   start_buttons(the_id, var_name);
 }
 
-// var button1Controller = new buttonController('#button-1');
-// button1Controller.infiniteJump();
-// button1Controller.speedupSmallerfont();
-
-// var button2Controller = new buttonController('#button-2');
-// button2Controller.infiniteJump();
-// button2Controller.speedupSmallerfont();
-
-// var button3Controller = new buttonController('#button-3');
-// button3Controller.infiniteJump();
-// button3Controller.speedupSmallerfont();
-
-// var button4Controller = new buttonController('#button-4');
-// button4Controller.infiniteJump();
-// button4Controller.speedupSmallerfont();
-
-// var button5Controller = new buttonController('#button-5');
-// button5Controller.infiniteJump();
-// button5Controller.speedupSmallerfont();
-
-// var button6Controller = new buttonController('#button-6');
-// button6Controller.infiniteJump();
-// button6Controller.speedupSmallerfont();
-
-// var button7Controller = new buttonController('#button-7');
-// button7Controller.infiniteJump();
-// button7Controller.speedupSmallerfont();
-
-// var button8Controller = new buttonController('#button-8');
-// button8Controller.infiniteJump();
-// button8Controller.speedupSmallerfont();
-
-// var button9Controller = new buttonController('#button-9');
-// button9Controller.infiniteJump();
-// button9Controller.speedupSmallerfont();
-
-// var button10Controller = new buttonController('#button-10');
-// button10Controller.infiniteJump();
-// button10Controller.speedupSmallerfont();
 
 

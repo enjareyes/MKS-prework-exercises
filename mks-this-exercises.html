@@ -1,0 +1,82 @@
+<html>
+
+<head>
+  <title>Javascript Bare</title>
+</head>
+
+
+<body>
+
+
+
+
+  <script src='https://code.jquery.com/jquery-2.1.3.js'> </script>
+  <script type="text/javascript" src='mks-this-exercises.js'></script>
+
+<!-- Fixed code: 
+
+
+  <script>
+    var sprayPixieDust = function(person) {
+      person.pixieDust += 1;
+    };
+
+    var wendy = {
+      pixieDust: 0,
+      fly: function(){
+        if (this.pixieDust < 2) {
+          return 'thump!';
+        }
+        else {
+          return 'I can fly!';
+        }
+      }
+    };
+
+    console.log('Wendy should not be able to fly (yet):', wendy.fly());
+
+    sprayPixieDust(wendy);
+    console.log('Wendy should STILL not be able to fly:', wendy.fly());
+
+    sprayPixieDust(wendy);
+    console.log('Can she fly now?', wendy.fly());
+
+  </script>
+
+-->
+<!--
+  <script>
+
+
+  Fixed: 
+  
+  var revealSecret = function () {
+    var secret = this.secret;
+    return secret;
+  };
+
+  var incept = function (person, func) {
+    person.inception = func;
+    var result = person.inception();
+    alert(person.name + " said: " + result);
+  };
+
+  var spy = {
+    name: "Mr. Smith",
+    secret: "I like pie"
+  };
+  incept(spy, revealSecret);
+
+  var otherSpy = {
+    name: "Dr. Tran",
+    secret: "I can lick my elbow"
+  };
+  incept(otherSpy, revealSecret);
+
+  </script>
+
+-->
+
+</body>
+
+</html>
